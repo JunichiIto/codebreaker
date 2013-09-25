@@ -1,4 +1,4 @@
-$match = []
+$result = []
 module CodeBreaker
   class Guess
     def initialize(answer)
@@ -8,41 +8,41 @@ module CodeBreaker
     def confirm(guess)
       /(.)(.)(.)(.)/ =~ guess
       @g1, @g2, @g3, @g4 = $1, $2, $3, $4
-      $match.clear
+      $result.clear
     
       case @g1
       when @a1
-        $match << "+"
+        $result << "+"
       end
       case @g2
       when @a2
-        $match << "+"
+        $result << "+"
       end
       case @g3
       when @a3
-        $match << "+"
+        $result << "+"
       end
       case @g4
       when @a4
-        $match << "+"
+        $result << "+"
       end
       case @g1
       when @a2, @a3, @a4
-        $match << "-"
+        $result << "-"
       end
       case @g2
       when @a1, @a3, @a4
-        $match << "-"
+        $result << "-"
       end
       case @g3
       when @a1, @a2, @a4
-        $match << "-"
+        $result << "-"
       end
       case @g4
       when @a1, @a2, @a3
-        $match << "-"
+        $result << "-"
       end
-      return $match.join
+      return $result.join
     end
   end
 end
