@@ -45,5 +45,46 @@ class TestCase_CodeBreakerGuess < Test::Unit::TestCase
     guess = CodeBreaker::Guess.new("1234")
     # Scenarios: matches with duplicates
     assert_equal("+",       guess.confirm("1155"))
+    assert_equal("-",       guess.confirm("5115"))
+    assert_equal("-",       guess.confirm("5115"))
+  end
+  def test_other1_confirm
+    guess = CodeBreaker::Guess.new("1134")
+    # Scenarios: matches with duplicates
+    assert_equal("++",       guess.confirm("1155"))
+    assert_equal("+-",       guess.confirm("5115"))
+    assert_equal("--",       guess.confirm("5511"))
+    assert_equal("++",       guess.confirm("1115"))
+    assert_equal("+-",       guess.confirm("5111"))
+  end
+  def test_other2_confirm
+    guess = CodeBreaker::Guess.new("1155")
+    # Scenarios: matches with duplicates
+    assert_equal("+",        guess.confirm("1234"))
+  end
+  def test_other3_confirm
+    guess = CodeBreaker::Guess.new("1111")
+    # Scenarios: matches with duplicates
+    assert_equal("+++",      guess.confirm("1112"))
+  end
+  def test_other4_confirm
+    guess = CodeBreaker::Guess.new("1113")
+    # Scenarios: matches with duplicates
+    assert_equal("++-",      guess.confirm("1121"))
+  end
+  def test_other5_confirm
+    guess = CodeBreaker::Guess.new("3111")
+    # Scenarios: matches with duplicates
+    assert_equal("++--",     guess.confirm("1311"))
+  end
+  def test_other6_confirm
+    guess = CodeBreaker::Guess.new("3114")
+    # Scenarios: matches with duplicates
+    assert_equal("--",       guess.confirm("1251"))
+  end
+  def test_other7_confirm
+    guess = CodeBreaker::Guess.new("1511")
+    # Scenarios: matches with duplicates
+    assert_equal("-",        guess.confirm("2134"))
   end
 end
