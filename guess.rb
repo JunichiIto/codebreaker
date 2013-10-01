@@ -1,31 +1,29 @@
-module CodeBreaker
-  class Guess
-    def initialize(answer)
-      @ans = []
-      answer.each_char{|c| @ans << c}
+class Guess
+  def initialize(answer)
+    @answer = []
+    answer.each_char{|c| @answer << c}
+  end
+  def confirm(num)
+    guess = [] ; ret = []
+    num.each_char{|c| guess << c}
+    answer = @answer.clone
+    # Exact match number search.
+    @answer.each_with_index do |ans,i|
+      if ans == guess[i]
+        ret << '+'
+        answer[i] = guess[i] = nil
+      end
     end
-    def confirm(guess)
-      gue = [] ; ret = []
-      guess.each_char{|c| gue << c}
-      ans = @ans.clone
-      # Exact match number search.
-      @ans.each_with_index do |answer,i|
-        if answer == gue[i]
-          ret << '+'
-          ans[i] = gue[i] = nil
+    # Exact match number is delete.
+    answer.compact! ; guess.compact!
+    answer.each do |ans|
+      guess.each_with_index do |gue,i|
+        if ans == gue
+          ret << '-'
+          guess.delete_at(i)
         end
       end
-      # Exact match number is delete.
-      ans.compact! ; gue.compact!
-      ans.each do |answer|
-        gue.each_with_index do |guess,i|
-          if answer == guess
-            ret << '-'
-            gue.delete_at(i)
-          end
-        end
-      end
-      ret.join
     end
+    ret.join
   end
 end
