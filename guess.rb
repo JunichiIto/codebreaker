@@ -2,6 +2,7 @@ class Guess
   def initialize(answer)
     @answer = answer
   end
+
   def confirm(guess)
     guess_chars = guess.split('')
     answer_chars = @answer.split('')
