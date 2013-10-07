@@ -4,8 +4,8 @@ class Guess
   end
   def confirm(number)
     guess_chars = number.split('')
-    ret = []
     answer_chars = @answer.split('')
+    ret = []
     # Exact match number search.
     answer_chars.each_with_index do |ans,i|
       if ans == guess_chars[i]
