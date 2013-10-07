@@ -1,13 +1,13 @@
 class Guess
   def initialize(answer)
-    @answer = answer.split('')
+    @answer_chars = answer.split('')
   end
   def confirm(num)
     guess = [] ; ret = []
     num.each_char{|c| guess << c}
-    answer = @answer.clone
+    answer = @answer_chars.clone
     # Exact match number search.
-    @answer.each_with_index do |ans,i|
+    @answer_chars.each_with_index do |ans,i|
       if ans == guess[i]
         ret << '+'
         answer[i] = guess[i] = nil
