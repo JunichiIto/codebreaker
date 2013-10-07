@@ -6,7 +6,7 @@ class Guess
   def confirm(guess)
     guess_chars = guess.split('')
     answer_chars = @answer.split('')
-    mark = []
+    mark = ''
 
     # Exact match number search.
     answer_chars.each_with_index do |answer_char, i|
@@ -28,6 +28,6 @@ class Guess
       end
     end
 
-    mark.join
+    mark
   end
 end
