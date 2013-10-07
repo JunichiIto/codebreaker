@@ -3,9 +3,8 @@ class Guess
     @answer_chars = answer.split('')
   end
   def confirm(number)
-    guess = []
+    guess = number.split('')
     ret = []
-    number.each_char{|c| guess << c}
     answer = @answer_chars.clone
     # Exact match number search.
     @answer_chars.each_with_index do |ans,i|
