@@ -4,8 +4,7 @@ class Guess
   end
 
   def confirm(guess)
-    guess_chars = guess.split('')
-    answer_chars = @answer.split('')
+    guess_chars, answer_chars = [guess, @answer].map(&:chars).map(&:to_a)
     mark = ''
 
     # Exact match number search.
