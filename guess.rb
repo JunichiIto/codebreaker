@@ -3,7 +3,8 @@ class Guess
     @answer_chars = answer.split('')
   end
   def confirm(num)
-    guess = [] ; ret = []
+    guess = []
+    ret = []
     num.each_char{|c| guess << c}
     answer = @answer_chars.clone
     # Exact match number search.
