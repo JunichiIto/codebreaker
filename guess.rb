@@ -3,23 +3,23 @@ class Guess
     @answer_chars = answer.split('')
   end
   def confirm(number)
-    guess = number.split('')
+    guess_chars = number.split('')
     ret = []
-    answer = @answer_chars.clone
+    answer_chars = @answer_chars.clone
     # Exact match number search.
     @answer_chars.each_with_index do |ans,i|
-      if ans == guess[i]
+      if ans == guess_chars[i]
         ret << '+'
-        answer[i] = guess[i] = nil
+        answer_chars[i] = guess_chars[i] = nil
       end
     end
     # Exact match number is delete.
-    [answer, guess].map(&:compact!)
-    answer.each do |ans|
-      guess.each_with_index do |gue,i|
+    [answer_chars, guess_chars].map(&:compact!)
+    answer_chars.each do |ans|
+      guess_chars.each_with_index do |gue,i|
         if ans == gue
           ret << '-'
-          guess.delete_at(i)
+          guess_chars.delete_at(i)
         end
       end
     end
