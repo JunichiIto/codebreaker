@@ -14,9 +14,10 @@ class Guess
         answer_chars[i] = guess_chars[i] = nil
       end
     end
+
+    # Delete exactly matched numbers
     [answer_chars, guess_chars].map(&:compact!)
 
-    # Exact match number is delete.
     answer_chars.each do |answer_char|
       guess_chars.each_with_index do |guess_char,i|
         if answer_char == guess_char
