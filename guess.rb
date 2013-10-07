@@ -14,7 +14,7 @@ class Guess
       end
     end
     # Exact match number is delete.
-    answer.compact! ; guess.compact!
+    [answer, guess].map(&:compact!)
     answer.each do |ans|
       guess.each_with_index do |gue,i|
         if ans == gue
