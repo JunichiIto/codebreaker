@@ -2,8 +2,8 @@ class Guess
   def initialize(answer)
     @answer = answer
   end
-  def confirm(number)
-    guess_chars = number.split('')
+  def confirm(guess)
+    guess_chars = guess.split('')
     answer_chars = @answer.split('')
     ret = []
 
