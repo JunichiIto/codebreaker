@@ -32,7 +32,6 @@ class TestCase_Guess < Test::Unit::TestCase
     # Scenarios: matches with duplicates
     assert_equal("+",       guess.confirm("1155"))
     assert_equal("-",       guess.confirm("5115"))
-    assert_equal("-",       guess.confirm("5115"))
   end
   def test_1134_confirm
     guess = Guess.new("1134")
