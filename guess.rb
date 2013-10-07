@@ -5,10 +5,9 @@ class Guess
 
   def confirm(guess)
     guess_chars, answer_chars = [guess, @answer].map(&:chars).map(&:to_a)
-    mark = ''
 
     # Exact match number search.
-    answer_chars.each_with_index do |answer_char, i|
+    plus_mark = answer_chars.each_with_index.each_with_object('') do |(answer_char, i), mark|
       if answer_char == guess_chars[i]
         mark << '+'
         answer_chars[i] = guess_chars[i] = nil
@@ -18,7 +17,7 @@ class Guess
     # Delete exactly matched numbers
     [answer_chars, guess_chars].map(&:compact!)
 
-    answer_chars.each do |answer_char|
+    answer_chars.each_with_object(plus_mark) do |answer_char, mark|
       guess_chars.each_with_index do |guess_char, i|
         if answer_char == guess_char
           mark << '-'
@@ -26,7 +25,5 @@ class Guess
         end
       end
     end
-
-    mark
   end
 end
