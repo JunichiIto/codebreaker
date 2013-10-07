@@ -9,7 +9,7 @@ class Guess
     ret = []
 
     # Exact match number search.
-    answer_chars.each_with_index do |answer_char,i|
+    answer_chars.each_with_index do |answer_char, i|
       if answer_char == guess_chars[i]
         ret << '+'
         answer_chars[i] = guess_chars[i] = nil
@@ -20,7 +20,7 @@ class Guess
     [answer_chars, guess_chars].map(&:compact!)
 
     answer_chars.each do |answer_char|
-      guess_chars.each_with_index do |guess_char,i|
+      guess_chars.each_with_index do |guess_char, i|
         if answer_char == guess_char
           ret << '-'
           guess_chars.delete_at(i)
