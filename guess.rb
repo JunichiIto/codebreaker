@@ -1,7 +1,6 @@
 class Guess
   def initialize(answer)
-    @answer = []
-    answer.each_char{|c| @answer << c}
+    @answer = answer.split('')
   end
   def confirm(num)
     guess = [] ; ret = []
