@@ -8,10 +8,7 @@ class Guess
     guess_chars, answer_chars = [guess, @answer].map(&:chars).map(&:to_a)
 
     plus_mark_search(guess_chars, answer_chars).tap do |plus_mark|
-      # Delete exactly matched numbers
-      [answer_chars, guess_chars].map(&:compact!)
-
-      plus_mark << minus_mark_search(answer_chars, guess_chars)
+      plus_mark << minus_mark_search(*[answer_chars, guess_chars].map(&:compact))
     end
   end
 
