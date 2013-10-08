@@ -7,18 +7,18 @@ class Guess
   def confirm(guess)
     guess_chars, answer_chars = [guess, @answer].map(&:chars).map(&:to_a)
 
-    search_plus_mark(guess_chars, answer_chars).tap do |plus_mark|
+    plus_mark_search(guess_chars, answer_chars).tap do |plus_mark|
       # Delete exactly matched numbers
       [answer_chars, guess_chars].map(&:compact!)
 
-      plus_mark << search_minus_mark(answer_chars, guess_chars)
+      plus_mark << minus_mark_search(answer_chars, guess_chars)
     end
   end
 
   private
 
   # このメソッドを呼ぶと引数の中身が変わるので、あまり良いメソッドではない
-  def search_plus_mark(answer_chars, guess_chars)
+  def plus_mark_search(answer_chars, guess_chars)
     # Exact match number search.
     answer_chars.each_with_index.each_with_object('') do |(answer_char, i), mark|
       if answer_char == guess_chars[i]
@@ -28,7 +28,7 @@ class Guess
     end
   end
 
-  def search_minus_mark(answer_chars, guess_chars)
+  def minus_mark_search(answer_chars, guess_chars)
     answer_chars.each_with_object('') do |answer_char, mark|
       guess_chars.each_with_index do |guess_char, i|
         if answer_char == guess_char
