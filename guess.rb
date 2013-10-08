@@ -7,12 +7,12 @@ class Guess
   def confirm(guess)
     guess_chars, answer_chars = [guess, @answer].map(&:chars).map(&:to_a)
 
-    plus_mark = search_plus_mark(guess_chars, answer_chars)
+    search_plus_mark(guess_chars, answer_chars).tap do |plus_mark|
+      # Delete exactly matched numbers
+      [answer_chars, guess_chars].map(&:compact!)
 
-    # Delete exactly matched numbers
-    [answer_chars, guess_chars].map(&:compact!)
-
-    plus_mark + search_minus_mark(answer_chars, guess_chars)
+      plus_mark << search_minus_mark(answer_chars, guess_chars)
+    end
   end
 
   private
