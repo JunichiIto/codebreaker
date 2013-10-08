@@ -5,9 +5,9 @@ class Guess
   end
 
   def confirm(guess)
-    guess_chars, answer_chars = [guess, @answer].map(&:chars).map(&:to_a)
+    answer_chars, guess_chars = [@answer, guess].map(&:chars).map(&:to_a)
 
-    plus_mark_search(guess_chars, answer_chars).tap do |plus_mark|
+    plus_mark_search(answer_chars, guess_chars).tap do |plus_mark|
       plus_mark << minus_mark_search(*[answer_chars, guess_chars].map(&:compact))
     end
   end
